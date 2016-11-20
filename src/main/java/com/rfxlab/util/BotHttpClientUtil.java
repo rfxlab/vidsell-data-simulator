@@ -79,7 +79,7 @@ public class BotHttpClientUtil {
 		initHttpClientPool();
 		for (int i = 0; i < 100; i++) {
 			try {
-				String url = "https://log1.adsplay.net/ping";
+				String url = "https://log.rfxlab.com/ping";
 				AsyncHttpClient ramdomAsyncHttpClient = getRamdomAsyncHttpClient();
 				String ua = ramdomAsyncHttpClient.getConfig().getUserAgent();
 				

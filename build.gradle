@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(Jar) {
+	destinationDir = file("$rootDir/BUILD-OUTPUT")
+}
+
 dependencies {
 	//common libs for AOP and Spring core
   	compile (
@@ -54,16 +58,22 @@ def getClasspathStringJars() {
     return '. ; ' + classpath + ' ; '
 }
 
-// copy libs
+// copy dependency libs
 task CopyRuntimeLibs(type: Copy) {  
-  into "build/libs/deps"  
+  into "BUILD-OUTPUT/deps"  
   from configurations.compile  
 }
 
-// copy config
+// copy configs
 task CopyConfigs(type: Copy) {  
-  into "build/libs/configs"  
+  into "BUILD-OUTPUT/configs"  
   from files('configs')
+}
+
+// copy shell-scripts
+task CopyShellScripts(type: Copy) {  
+  into "BUILD-OUTPUT"  
+  from files('shell-scripts')
 }
 
 task buildVidsellDataSimulatorBot(type: Jar) {	
