@@ -1,0 +1,44 @@
+SQL.user.insert =>
+	INSERT INTO user(name, email, age, gender,location,creation_date,modification)
+	VALUES (?,?,?,?,?,?,?)
+;
+
+SQL.user.get_id_by_email => SELECT user_id FROM user WHERE email = ? ;
+
+SQL.product.insert =>
+	INSERT INTO product(product_id,name,description,status,creation_time,update_time,price,product_type,brand,subcategory,category,store_id)
+	VALUES(?,?,?, ?,?,?, ?,?,?, ?,?,?)
+;
+
+SQL.product.check_id => SELECT product_id FROM product WHERE product_id = ? ;
+
+SQL.video.insert =>
+	INSERT INTO video(video_id,url, category,title, description,thumbnail_image, published_time,channel_id, channel_title,product_id)
+	VALUES (?,?,?,?,?, ?,?,?,?,?)
+;	
+
+SQL.video.check_id => SELECT video_id FROM video WHERE video_id = ? ;
+	
+SQL.selling_store.insert =>
+	INSERT INTO selling_store(name, user_id, location)
+	VALUES (?,?,?)
+;
+
+SQL.selling_store.get_by_user => SELECT * FROM selling_store WHERE user_id = ? AND name = ?;
+		
+SQL.selling_order.insert =>
+	INSERT INTO selling_order(product_id, customer_id, order_date, quantity, revenue, discount)
+	VALUES (?,?,?,?,?,?)
+;
+
+SQL.product.get_random => 
+	SELECT product.*, selling_store.user_id as owner_id
+	FROM (SELECT * FROM product ORDER BY RAND() LIMIT ?) product, selling_store
+	WHERE product.store_id = selling_store.store_id
+;
+
+SQL.product.get_by_id => 
+	SELECT product.*, selling_store.user_id as owner_id
+	FROM  product, selling_store
+	WHERE product.store_id = selling_store.store_id AND product.product_id = ?
+;
