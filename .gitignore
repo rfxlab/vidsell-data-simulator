@@ -11,6 +11,9 @@
 **/.gradle/**
 **/data
 **/data/**
+**/BUILD-OUTPUT/**
+**/bin/**
+**/build/**
 
 **/node_modules/**
 **/.idea/**
