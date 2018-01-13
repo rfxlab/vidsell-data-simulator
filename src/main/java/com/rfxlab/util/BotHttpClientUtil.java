@@ -65,7 +65,7 @@ public class BotHttpClientUtil {
 	}
 	
 	public static AsyncHttpClient getRamdomAsyncHttpClient() {
-		int r = RandomUtil.getRandomInteger(2, 1);
+		int r = RandomUtil.getRandomInteger(3, 1);
 		if (r == 1) {
 			int i = RandomUtil.getRandom(httpClientPcPool.size() - 1);
 			return httpClientPcPool.get(i);

@@ -151,8 +151,8 @@ public class VidsellDataSimulatorBot {
 					doHttpLog(baseDomain, httpClient, viewerId, pageviewMetric, referrer, url, location, productId, videoId, uuid, 0);
 					
 					DbProduct product = dbProductDao.getProductById(productId);
-					String catname = StringUtils.stripAccents(product.getCategory()).replaceAll(" ", "-");
 					if(product != null){
+						String catname = StringUtils.stripAccents(product.getCategory()).replaceAll(" ", "-");
 						//log click
 						int ran2 = RandomUtil.getRandomInteger(1000, 0);
 						if(ran2<300){
